@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-"""Geometry module.
-Author: Kanneh
-
+"""
+Contains the class BaseGeometry
 """
 
 

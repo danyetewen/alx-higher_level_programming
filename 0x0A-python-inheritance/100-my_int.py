@@ -1,14 +1,19 @@
 #!/usr/bin/python3
-"""My integer"""
+"""
+Contains the class MyInt
+"""
 
 
 class MyInt(int):
-    """A class that inherits from int"""
+    """rebel version of an integer, perfect for opposite day!"""
+    def __new__(cls, *args, **kwargs):
+        """create a new instance of the class"""
+        return super(MyInt, cls).__new__(cls, *args, **kwargs)
 
-    def __eq__(self, value):
-        """Not equating the operator"""
-        return self.real != value
+    def __eq__(self, other):
+        """what was != is now =="""
+        return int(self) != other
 
-    def __ne__(self, value):
-        """Equating the operator"""
-        return self.real == value
+    def __ne__(self, other):
+        """what was == is now !="""
+        return int(self) == other
