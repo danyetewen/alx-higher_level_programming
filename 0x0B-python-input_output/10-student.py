@@ -1,12 +1,14 @@
 #!/usr/bin/python3
-"""Student to disk and reload"""
+"""Student to JSON with filter
+"""
 
 
 class Student:
-    """Represent a student."""
+    """A class representation of a student.
+    """
 
     def __init__(self, first_name, last_name, age):
-        """Initializes a new Student.
+        """Initializes a new student.
 
         Args:
             first_name (str): The first name of the student.
@@ -31,14 +33,3 @@ class Student:
                 all(type(ele) == str for ele in attrs)):
             return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
         return self.__dict__
-
-    def reload_from_json(self, json):
-        """Replace all attributes of the Student.
-
-        Args:
-            json (dict): The key/value pairs to
-            replace attributes with.
-
-        """
-        for k, v in json.items():
-            setattr(self, k, v)
