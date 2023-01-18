@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 """
-Python script that takes in a URL, sends a request to the URL and displays
- the value of the X-Request-Id variable found in the header of the response
- """
-import urllib.request
-import urllib.parse
+takes in a URL and an email, sends a POST request to the
+passed URL with the email as a parameter
+"""
 from sys import argv
+from urllib import request, parse
+
 
 if __name__ == "__main__":
-    post_data = urllib.parse.urlencode({'email': argv[2]}).encode('ascii')
-    with urllib.request.urlopen(url=argv[1], data=post_data) as response:
-        print(response.read().decode('UTF-8'))
+    email = parse.urlencode({"email": argv[2]}).encode()
+    req = request.Request(argv[1], email)
+    with request.urlopen(req) as res:
+        print(res.read().decode("utf8"))

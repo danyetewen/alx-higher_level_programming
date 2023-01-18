@@ -1,19 +1,23 @@
 #!/usr/bin/python3
 """
-Holberton School staff evaluates candidates applying
-for a back-end position with multiple technical challenges
+Takes your Github credentials (username and password) and
+uses the Github API to display your commits
 """
-from sys import argv
 import requests
+from sys import argv
 
 
 if __name__ == "__main__":
-    r = requests.get('https://api.github.com/repos/{}/{}/commits'
-                     .format(argv[2], argv[1]))
-    l = r.json()
+    i = 0
     try:
-        for i in range(10):
-            print(l[i].get('sha'), l[i].get('commit')
-                  .get('author').get('name'), sep=": ")
+        res = requests.get("https://api.github.com/repos/{}/{}/commits".
+                           format(argv[2], argv[1])).json()
+        for commit in res:
+            sha = commit.get("sha")
+            author = commit.get("commit").get("author").get("name")
+            i += 1
+            print("{}: {}".format(sha, author))
+            if i == 10:
+                break
     except:
-        pass
+        print("Not a valid PARAMETER")
